@@ -202,6 +202,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		D20B01DF26AE0154001B089A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D28A11D826A73FCC00032484 /* ViewController.swift */,
+				D20B01D926ACAFC8001B089A /* WebViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		D28A11C826A73FCC00032484 = {
 			isa = PBXGroup;
 			children = (
@@ -228,8 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				D28A11D426A73FCC00032484 /* AppDelegate.swift */,
-				D28A11D826A73FCC00032484 /* ViewController.swift */,
-				D20B01D926ACAFC8001B089A /* WebViewController.swift */,
+				D20B01DF26AE0154001B089A /* ViewController */,
 				D20B01CC26AAFC9F001B089A /* Extension */,
 				D20B01C726A9EF5D001B089A /* View */,
 				D20B01C126A9A9E6001B089A /* ViewModel */,

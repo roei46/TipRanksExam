@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(UINib(nibName: "PromotionTableViewCell", bundle: nil), forCellReuseIdentifier: "PromotionTableViewCell")
-        
+        self.navigationItem.title = "Welcome!"
         bindRx()
     }
     
