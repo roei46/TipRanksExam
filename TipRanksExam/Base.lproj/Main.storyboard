@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="TipRanksExam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9ns-cx-5ge">
+                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="rPA-HI-cOF">
+                                <rect key="frame" x="63" y="44" width="351" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-Bz-hTz">
+                                <rect key="frame" x="15" y="44" width="48" height="51"/>
+                                <state key="normal" title="Search"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rPA-HI-cOF" secondAttribute="trailing" id="7xt-2E-86S"/>
+                            <constraint firstItem="ODC-Bz-hTz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9MQ-jY-Lud"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="top" secondItem="ODC-Bz-hTz" secondAttribute="bottom" id="Eip-CZ-Ihu"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="top" secondItem="rPA-HI-cOF" secondAttribute="bottom" id="HZO-Pt-61x"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="top" secondItem="ODC-Bz-hTz" secondAttribute="bottom" id="OeK-FD-MtS"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PMP-hY-JcA"/>
+                            <constraint firstItem="rPA-HI-cOF" firstAttribute="leading" secondItem="ODC-Bz-hTz" secondAttribute="trailing" id="arm-eo-vh4"/>
+                            <constraint firstItem="ODC-Bz-hTz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="lh7-OO-1M5"/>
+                            <constraint firstItem="rPA-HI-cOF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ndX-kC-jaB"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pLW-0s-Son"/>
+                            <constraint firstItem="9ns-cx-5ge" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wh5-KI-CjW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn" destination="ODC-Bz-hTz" id="1En-H8-h0i"/>
+                        <outlet property="searchField" destination="rPA-HI-cOF" id="pik-06-VOf"/>
+                        <outlet property="tableView" destination="9ns-cx-5ge" id="72k-Oo-ktx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="71.014492753623188" y="107.8125"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="5Co-Vg-dAv">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="hEJ-qd-yNl" customClass="WebViewController" customModule="TipRanksExam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lhn-Xs-bry">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bko-II-52k">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="F9G-RM-7iv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F9G-RM-7iv" firstAttribute="trailing" secondItem="bko-II-52k" secondAttribute="trailing" id="JKu-0g-Hrp"/>
+                            <constraint firstItem="bko-II-52k" firstAttribute="top" secondItem="F9G-RM-7iv" secondAttribute="top" id="mJ4-bT-NIX"/>
+                            <constraint firstItem="bko-II-52k" firstAttribute="leading" secondItem="F9G-RM-7iv" secondAttribute="leading" id="nto-7e-Qo1"/>
+                            <constraint firstItem="F9G-RM-7iv" firstAttribute="bottom" secondItem="bko-II-52k" secondAttribute="bottom" id="wpZ-K3-kXm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webViewer" destination="bko-II-52k" id="DnJ-ZA-YCT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="isp-dC-JsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965" y="22"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
