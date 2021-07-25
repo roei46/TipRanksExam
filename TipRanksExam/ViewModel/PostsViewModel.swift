@@ -85,7 +85,7 @@ final class PostsViewModel {
         
         let scan = posts.scan(into: [Post]()) { current, items in
             if let itemsArray = items.element?.data.count, itemsArray < 20 {
-                
+                self.listFinished.accept(true)
             }
             
             if self.needReset {
@@ -103,27 +103,28 @@ final class PostsViewModel {
                 $0.error
             }
         
-        _onError.subscribe(onNext: { error in
-            if let error = error as NSError? {
-                if error.code == 404 {
-
-                }
-            }
-        }).disposed(by: disposeBag)
+//        _onError.subscribe(onNext: { error in
+//            if let errortest = error as NSError? {
+//                if errortest.code == 404 {
+//
+//                }
+//            }
+//        }).disposed(by: disposeBag)
            
         let vm = scan.map {
             self.postsToCellViewModel(posts: $0)
         }
 
-        isLoading = Observable.merge(
-            posts.map { _ in true },
-            vm.map { _ in false }
-        )
-        .asDriver(onErrorJustReturn: true)
         
         itemsDriver = vm
             .map { $0 }
             .asDriver(onErrorJustReturn: [])
+        
+        isLoading = Observable.merge(
+            posts.map { _ in true },
+            itemsDriver.asObservable().map { _ in false }
+        )
+        .asDriver(onErrorJustReturn: true)
     }
     
     private func postsToCellViewModel(posts: [Post]) -> [CellType] {

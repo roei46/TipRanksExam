@@ -32,10 +32,11 @@ class PostTableViewCell: UITableViewCell {
         authorImage.makeRounded()
         descriptionLbl.text = viewModel.description
         nameDateLbl.text = viewModel.authorName + " / " + viewModel.date 
-        headlineLbl.text = viewModel.headline
         
-        background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
-        authorImage.sd_setImage(with: URL(string: viewModel.authorImageUrl), completed: nil)
+        self.background.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        self.background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
+        self.authorImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        self.authorImage.sd_setImage(with: URL(string: viewModel.authorImageUrl), completed: nil)
     }
 }
 

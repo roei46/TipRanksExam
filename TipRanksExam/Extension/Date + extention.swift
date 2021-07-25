@@ -11,7 +11,7 @@ extension Date {
     /// Returns the amount of years from another date
     func getDate(from date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY/MM/dd"
+        dateFormatter.dateFormat = "YY-MM-dd"
         return dateFormatter.string(from: date)
     }
     
