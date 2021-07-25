@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
     func config(viewModel: PostTableViewCellViewModel) {
         authorImage.makeRounded()
         descriptionLbl.text = viewModel.description
-        nameDateLbl.text = viewModel.authorName + "/" + viewModel.date 
+        nameDateLbl.text = viewModel.authorName + " / " + viewModel.date 
         headlineLbl.text = viewModel.headline
         
         background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
