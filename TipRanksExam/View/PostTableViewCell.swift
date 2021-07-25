@@ -34,8 +34,8 @@ class PostTableViewCell: UITableViewCell {
         nameDateLbl.text = viewModel.authorName
         headlineLbl.text = viewModel.headline
         
-//        background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
-//        authorImage.sd_setImage(with: URL(string: viewModel.authorImageUrl), completed: nil)
+        background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
+        authorImage.sd_setImage(with: URL(string: viewModel.authorImageUrl), completed: nil)
     }
 }
 

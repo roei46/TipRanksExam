@@ -24,6 +24,7 @@
 		D20B01D826AC78FA001B089A /* PromotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20B01D626AC78FA001B089A /* PromotionTableViewCell.xib */; };
 		D20B01DA26ACAFC8001B089A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B01D926ACAFC8001B089A /* WebViewController.swift */; };
 		D20B01DC26ADC82D001B089A /* UITableView + extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B01DB26ADC82D001B089A /* UITableView + extention.swift */; };
+		D20B01DE26ADDB5D001B089A /* UIScrollView + extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B01DD26ADDB5D001B089A /* UIScrollView + extention.swift */; };
 		D28A11D526A73FCC00032484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28A11D426A73FCC00032484 /* AppDelegate.swift */; };
 		D28A11D926A73FCC00032484 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28A11D826A73FCC00032484 /* ViewController.swift */; };
 		D28A11DC26A73FCC00032484 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28A11DA26A73FCC00032484 /* Main.storyboard */; };
@@ -76,6 +77,7 @@
 		D20B01D626AC78FA001B089A /* PromotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionTableViewCell.xib; sourceTree = "<group>"; };
 		D20B01D926ACAFC8001B089A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D20B01DB26ADC82D001B089A /* UITableView + extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + extention.swift"; sourceTree = "<group>"; };
+		D20B01DD26ADDB5D001B089A /* UIScrollView + extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + extention.swift"; sourceTree = "<group>"; };
 		D28A11D126A73FCC00032484 /* TipRanksExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipRanksExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28A11D426A73FCC00032484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28A11D826A73FCC00032484 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				D20B01D126AB354A001B089A /* UIimageView + extention.swift */,
 				D20B01D326AB3581001B089A /* Date + extention.swift */,
 				D20B01DB26ADC82D001B089A /* UITableView + extention.swift */,
+				D20B01DD26ADDB5D001B089A /* UIScrollView + extention.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				D20B01BA26A9A7AF001B089A /* EndPointType.swift in Sources */,
 				D20B01BE26A9A7EE001B089A /* Networking.swift in Sources */,
 				D20B01DA26ACAFC8001B089A /* WebViewController.swift in Sources */,
+				D20B01DE26ADDB5D001B089A /* UIScrollView + extention.swift in Sources */,
 				D28A11DF26A73FCC00032484 /* TipRanksExam.xcdatamodeld in Sources */,
 				D28A120C26A7413200032484 /* MainCoordinator.swift in Sources */,
 				D20B01C626A9AA85001B089A /* Post.swift in Sources */,

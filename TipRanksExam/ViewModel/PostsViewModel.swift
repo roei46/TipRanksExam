@@ -72,25 +72,6 @@ final class PostsViewModel {
             self.params.updateValue(self.page, forKey: "page")
             return value + 1
         }
-                
-//        let posts = page
-//            .flatMapLatest { page in
-//                self.networking.preformNetworkTaskGet(
-//                    endPoint: Api.get,
-//                    type: Posts.self,
-//                    methodType: .get,
-//                    param: self.params)
-//
-//            }
-//            .scan(into: [Post]()) { current, items in
-//                if self.needReset {
-//                    current = [Post]()
-//                    self.needReset = false
-//                }
-//                current.append(contentsOf: items.data)
-//                self.counter = current.count
-//            }
-//            .share()
         
         let posts = page
             .flatMapLatest { page in
