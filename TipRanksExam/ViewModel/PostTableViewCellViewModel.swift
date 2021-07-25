@@ -32,14 +32,7 @@ final class PostTableViewCellViewModel {
         headline = post.title
         authorName = post.author.name
         link = post.link
-        //date = convertDate(date: post.date)
         date = convertDate(date: post.date)
-        let image = getImage
-            .flatMap {
-                return networking.downloadImage(url: post.thumbnail.src).debug("call roei")
-            }
-        
-        _ = image.map { self.image = $0 }
     }
     
     
