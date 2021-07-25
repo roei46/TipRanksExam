@@ -11,5 +11,4 @@ import RxSwift
 
 protocol NetworkType {
     func preformNetworkTaskGet<T: Codable>(endPoint: EndpointType, type: T.Type, methodType: MethodsType, param: [String : Any]?) -> Observable<T>
-    func downloadImage(url: String) -> Observable<UIImage>
 }

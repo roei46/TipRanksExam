@@ -36,21 +36,6 @@ extension MethodsType {
 }
 
 struct Networking: NetworkType {
-    func downloadImage(url: String) -> Observable<UIImage> {
-        return Observable<UIImage>.create { (observer) -> Disposable in
-                AF.request(url).response{ response in
-                    print(response)
-                    switch response.result {
-                    case .success(let responseData):
-                        observer.onNext(UIImage(data: responseData!)!)
-                    case .failure(let error):
-                        observer.onError(error)
-                    }
-                }
-            return Disposables.create()
-        }
-    }
-    
     
     func preformNetworkTaskGet<T: Codable>(endPoint: EndpointType, type: T.Type, methodType: MethodsType, param: [String : Any]?) -> Observable<T> {
         return Observable<T>.create { (observer) -> Disposable in
