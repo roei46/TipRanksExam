@@ -30,11 +30,10 @@ class ViewController: UIViewController {
     
     func bindRx() {
         
-        viewModel.listFinished
-            .subscribe(onNext: { val in
-                if val {
-                    self.addFotter()
-                }
+        searchField.rx
+            .cancelButtonClicked
+            .subscribe(onNext: {
+                self.searchField.resignFirstResponder()
             }).disposed(by: disposeBag)
         
         searchField.rx
@@ -79,10 +78,15 @@ class ViewController: UIViewController {
             .drive(tableView.rx.animation)
             .disposed(by: disposeBag)
         
+        viewModel.isLoadingState
+            .bind(to: tableView.rx.animation)
+            .disposed(by: disposeBag)
+        
         tableView.rx
             .modelSelected(CellType.self)
             .bind(to: viewModel.selectedCell)
             .disposed(by: disposeBag)
+        //MARK - Second way to know the end of the tableView
         
 //        tableView.rx
 //            .reachedBottom()
@@ -95,21 +99,9 @@ class ViewController: UIViewController {
                     .subscribe(onNext: { cell, indexPath in
                         let lastItem = self.viewModel.counter - 1
                         if indexPath.row == lastItem {
-                           // self.tableView.beginUpdates()
-                            self.viewModel.loadMore.accept(())
+                             self.viewModel.loadMore.accept(())
                         }
                     })
                     .disposed(by: disposeBag)
-
-    }
-    
-    func addFotter() {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
-        footerView.backgroundColor = .red
-        let labelFooter = UILabel(frame: footerView.frame)
-        labelFooter.text = "End of the list! "
-        labelFooter.textColor = .black
-        footerView.addSubview(labelFooter)
-        tableView.tableFooterView = footerView
     }
 }

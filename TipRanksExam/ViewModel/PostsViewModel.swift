@@ -9,41 +9,49 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum NetworkState {
+    case footer
+    case loading
+    case notLoading
+}
+
 enum CellType {
     case post(model: PostTableViewCellViewModel)
     case promotion(title: String)
 }
 
 final class PostsViewModel {
+    
     let disposeBag = DisposeBag()
+    private var networking: Networking!
     
-    var networking: Networking!
-    var isLoading: Driver<Bool>!
-    var itemsDriver: Driver<[CellType]>!
-    
+    //Inputs
     var searchButtonTapped = PublishRelay<Void>()
     var searchText = PublishRelay<String>()
     var loadMore = PublishRelay<Void>()
     var selectedCell = PublishRelay<CellType>()
     
+    //Outputs
+    var itemsDriver: Driver<[CellType]>!
+    var isLoadingState = PublishRelay<NetworkState>()
+    var isLoading: Driver<NetworkState>!
     private let _onNext = PublishRelay<String>()
     lazy var onNext = _onNext.asDriver(onErrorDriveWith: .never())
     
     private var _onError: Observable<Error>!
     lazy var onError = _onError.asDriver(onErrorDriveWith: .never())
-        
-    var listFinished = PublishRelay<Bool>()
     
-    var needReset = false
-    var page = 1
+    private var needReset = false
+    private var page = 1
     var counter = 0
-    var params = [ "page": 1,
+    private var params = [ "page": 1,
                    "per_page": 20,
                    "search_query": ""] as [String : Any]
     
     init(networking: Networking = Networking()) {
         self.networking = networking
         
+        //MARK -  Now what to do if selected item
         selectedCell.subscribe(onNext: { item in
             var link = ""
             switch item {
@@ -85,7 +93,8 @@ final class PostsViewModel {
         
         let scan = posts.scan(into: [Post]()) { current, items in
             if let itemsArray = items.element?.data.count, itemsArray < 20 {
-                self.listFinished.accept(true)
+                //MARK - if array < 20 show footer
+                self.isLoadingState.accept(.footer)
             }
             
             if self.needReset {
@@ -103,31 +112,33 @@ final class PostsViewModel {
                 $0.error
             }
         
-//        _onError.subscribe(onNext: { error in
-//            if let errortest = error as NSError? {
-//                if errortest.code == 404 {
-//
-//                }
-//            }
-//        }).disposed(by: disposeBag)
+        //MARK - if error  == 404 show footer
+        _onError.subscribe(onNext: { error in
+            if let errortest = error as NSError? {
+                if errortest.code == 404 {
+                    self.isLoadingState.accept(.footer)
+                }
+            }
+        }).disposed(by: disposeBag)
            
         let vm = scan.map {
             self.postsToCellViewModel(posts: $0)
         }
 
-        
         itemsDriver = vm
             .map { $0 }
             .asDriver(onErrorJustReturn: [])
         
         isLoading = Observable.merge(
-            posts.map { _ in true },
-            itemsDriver.asObservable().map { _ in false }
+            posts.map { _ in .loading },
+            itemsDriver.asObservable().map { _ in .notLoading }
         )
-        .asDriver(onErrorJustReturn: true)
+        .asDriver(onErrorJustReturn: .notLoading)
     }
     
     private func postsToCellViewModel(posts: [Post]) -> [CellType] {
+        //MARK - Add cells ever 10 cells 
+
         var cellViewModelArray = [CellType]()
         for (index, object) in posts.enumerated() {
             if index % 10  == 3 {
@@ -138,7 +149,6 @@ final class PostsViewModel {
             }
         }
         
-        print(cellViewModelArray.count)
         return cellViewModelArray
     }
 }
