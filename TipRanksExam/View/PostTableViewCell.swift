@@ -32,6 +32,7 @@ class PostTableViewCell: UITableViewCell {
         authorImage.makeRounded()
         descriptionLbl.text = viewModel.description
         nameDateLbl.text = viewModel.authorName + " / " + viewModel.date 
+        headlineLbl.text = viewModel.headline
         
         self.background.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.background.sd_setImage(with: URL(string: viewModel.imageUrl), completed: nil)
