@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "PromotionTableViewCell", bundle: nil), forCellReuseIdentifier: "PromotionTableViewCell")
         self.navigationItem.title = "Welcome!"
         bindRx()
+        showEmptyLabel()
     }
     
     func bindRx() {
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         
         btn.rx
             .tap
+            .debug("view controller btn taped 🛵")
             .bind(to: viewModel.searchButtonTapped)
             .disposed(by: disposeBag)
         
@@ -55,10 +57,13 @@ class ViewController: UIViewController {
         
         searchField.rx
             .searchButtonClicked
+            .debug("view controller searchButtonClicked taped 🛵")
             .bind(to: viewModel.searchButtonTapped)
             .disposed(by: disposeBag)
         
         viewModel.itemsDriver.drive(tableView.rx.items) { (tableView, row, element) -> UITableViewCell in
+            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+            self.tableView.backgroundView = nil
             
             switch element {
             case .post(model: let vm):
@@ -67,8 +72,9 @@ class ViewController: UIViewController {
                 cell.setNeedsLayout()
                 return cell
                 
-            case .promotion(title: _):
+            case .promotion(title: let title):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "PromotionTableViewCell") as! PromotionTableViewCell
+                cell.config(title: title)
                 return cell
             }
         }.disposed(by: disposeBag)
@@ -94,14 +100,26 @@ class ViewController: UIViewController {
 //            .bind(to: self.viewModel.loadMore)
 //            .disposed(by: disposeBag)
         
-                tableView.rx
-                    .willDisplayCell
-                    .subscribe(onNext: { cell, indexPath in
-                        let lastItem = self.viewModel.counter - 1
-                        if indexPath.row == lastItem {
-                             self.viewModel.loadMore.accept(())
-                        }
-                    })
-                    .disposed(by: disposeBag)
+        tableView.rx
+            .willDisplayCell
+            .subscribe(onNext: { cell, indexPath in
+                if self.viewModel.counter - 1 > 1 {
+                    let lastItem = self.viewModel.counter - 1
+                    if indexPath.row == lastItem {
+                        self.viewModel.loadMore.accept(())
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
+    
+    func showEmptyLabel() {
+        let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
+        noDataLabel.text = "Start having fun dude!!!"
+        noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+        noDataLabel.textAlignment = NSTextAlignment.center
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.backgroundView = noDataLabel
+     }
+
 }

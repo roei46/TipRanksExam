@@ -25,9 +25,13 @@ final class MainCoordinator: Coordinator {
         .disposed(by: vm.disposeBag)
         
         //MARK - show error
-        vm.onError.drive(onNext: { [weak self] _ in
+        vm.onError.drive(onNext: { [weak self] error in
             guard let self = self else { return }
-            self.showAlert()
+            if let errorCode = error as NSError? {
+                if errorCode.code != 10 {
+                    self.showAlert()
+                }
+            }
         })
         .disposed(by: vm.disposeBag)
         
@@ -40,9 +44,16 @@ final class MainCoordinator: Coordinator {
 
 extension MainCoordinator {
     func showWebView(with link: String) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.link = link
-        self.navigationController.pushViewController(vc, animated: true)
+        if link == "https://www.tipranks.com/" {
+            if let url = URL(string: link) {
+                UIApplication.shared.open(url)
+            }
+        } else {
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+            vc.link = link
+            self.navigationController.pushViewController(vc, animated: true)
+        }
     }
     
     func showAlert() {

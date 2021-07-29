@@ -8,7 +8,8 @@
 import UIKit
 
 class PromotionTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var titleLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,4 +21,7 @@ class PromotionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func config(title: String) {
+        titleLbl.text = title
+    }
 }
