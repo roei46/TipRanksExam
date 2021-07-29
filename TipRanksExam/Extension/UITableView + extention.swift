@@ -15,14 +15,6 @@ extension Reactive where Base: UITableView {
         return Binder(self.base) { hud, state in
             
             switch state {
-            //            case .footer:
-            //                let footerView = UIView(frame: CGRect(x: 0, y: 0, width: hud.frame.size.width, height: 40))
-            //                footerView.backgroundColor = .red
-            //                let labelFooter = UILabel(frame: footerView.frame)
-            //                labelFooter.text = " End of the list! "
-            //                labelFooter.textColor = .black
-            //                footerView.addSubview(labelFooter)
-            //                hud.tableFooterView = footerView
             case .loading:
                 let spinner = UIActivityIndicatorView(style: .medium)
                 spinner.startAnimating()

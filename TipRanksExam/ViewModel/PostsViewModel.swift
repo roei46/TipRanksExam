@@ -79,7 +79,7 @@ final class PostsViewModel {
             self.page = self.page + 1
             self.params.updateValue(self.page, forKey: "page")
             return value + 1
-        }.debug("page 🛵")
+        }
         
         let posts = page
             .flatMapLatest { page in
@@ -89,7 +89,7 @@ final class PostsViewModel {
                     methodType: .get,
                     param: self.params)
                     .materialize()
-            }.debug("post 🛵")
+            }
             .share()
         
         let scan = posts.scan(into: [Post]()) { current, items in
@@ -104,7 +104,7 @@ final class PostsViewModel {
             guard let element = items.element?.data else { return }
             current.append(contentsOf: element)
             self.counter = current.count
-        }.debug("scan 🛵")
+        }
         .share()
         
         _onError = posts
@@ -134,7 +134,7 @@ final class PostsViewModel {
             vm.map { _ in
                 self.deltaItemsCount?.count ?? 0 < 20 ? .notLoading(endOfTheList: true) : .notLoading(endOfTheList: false)
             }
-        ).debug("isLoading 🛵")
+        )
         .asDriver(onErrorJustReturn: .notLoading(endOfTheList: false))
     }
     
